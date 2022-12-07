@@ -1,14 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 function CustomerForm() {
+
+    const noData = {
+        name: "",
+        address: "",
+        phone_number: "",
+    }
+
+    const [customerData, setCustomerData] = useState(noData)
+
+    const handleChange = (event) => {
+        setCustomerData({...customerData, [event.target.name]: event.target.value});
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const customerUrl = "http://localhost:8090/api/customers/";
+        const fetchConfig = {
+            method: "POST",
+            body: JSON.stringify({...customerData}),
+            headers: {"Content-Type": "application.json"}
+        }
+        const response = await fetch(customerUrl, fetchConfig);
+        if (response.ok) {
+            const newCustomer = await response.json();
+            console.log(newCustomer)
+            setCustomerData(noData)
+        } else {
+            console.log("error with post")
+        }
+    }
 
     return(
         <div className="row">
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Add a customer</h1>
-            <form onSubmit={this.handleSubmit} id="customer-form">
+            <form onSubmit={handleSubmit} id="customer-form">
               <div className="form-floating mb-3">
                 <input onChange={handleChange} value={customerData.name} placeholder="Enter your full name" required type="text" name="name" id="name" className="form-control" />
                 <label htmlFor="name">Name</label>

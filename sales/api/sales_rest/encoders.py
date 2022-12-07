@@ -23,6 +23,7 @@ class CustomerDetailEncoder(ModelEncoder):
 class SalesPersonEncoder(ModelEncoder):
     model = SalesPerson
     properties = [
+        "id",
         "name",
         "employee_number",
     ]

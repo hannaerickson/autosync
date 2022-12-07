@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 
 function SalesList() {
 
+    const []
+
     return(
         <table className="table table-striped">
           <thead>
