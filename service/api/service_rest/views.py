@@ -30,14 +30,16 @@ class TechnicianEncoder(ModelEncoder):
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
+        "id",
         "vin",
         "owner",
         "date",
         "technician",
         "reason",
+        "vip_status",
+        "status",
     ]
     encoders = {
-        "vin": AutomobileVOEncoder(),
         "technician": TechnicianEncoder(),
     }
 
@@ -80,8 +82,12 @@ def api_appointments(request):
         try:
             content = json.loads(request.body)
             vin = content["vin"]
-            auto = AutomobileVO.objects.get(vin=vin)
-            content["vin"] = auto
+            try:
+                auto = AutomobileVO.objects.get(vin=vin)
+                content["vip_status"] = "VIP"
+            except AutomobileVO.DoesNotExist:
+                vin = content["vin"]
+                content["vip_status"] = ""
             owner = content["owner"]
             date = content["date"]
             reason = content["reason"]
@@ -94,6 +100,27 @@ def api_appointments(request):
                 encoder=AppointmentEncoder,
                 safe=False,
             )
-        except (AutomobileVO.DoesNotExist, Technician.DoesNotExist):
-            response = JsonResponse({"message": "Does not exist"})
+        except Technician.DoesNotExist:
+            response = JsonResponse({"message": "Tech does not exist"})
             response.status_code = 404
+            return response
+
+@require_http_methods(["DELETE", "PUT"])
+def api_change_appointment(request, vin):
+    if request.method == "DELETE":
+        try:
+            appointment = Appointment.objects.get(vin=vin)
+            appointment.delete()
+            return JsonResponse({"message": "Appointment deleted"})
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message": "Appointment for that VIN does not exist"})
+    else:
+        content = json.loads(request.body)
+        status = content["status"]
+        Appointment.objects.filter(vin=vin).update(**content)
+        appointment = Appointment.objects.get(vin=vin)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )

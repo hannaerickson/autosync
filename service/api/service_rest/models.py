@@ -15,11 +15,7 @@ class Technician(models.Model):
         return self.name
 
 class Appointment(models.Model):
-    vin = models.ForeignKey(
-        "AutomobileVO",
-        related_name="appointments",
-        on_delete=models.CASCADE,
-    )
+    vin = models.CharField(max_length=17, default="")
     owner = models.CharField(max_length=100)
     date = models.DateTimeField()
     technician = models.ForeignKey(
@@ -28,3 +24,5 @@ class Appointment(models.Model):
         on_delete=models.CASCADE,
     )
     reason = models.CharField(max_length=200, default="")
+    vip_status = models.CharField(max_length=10, default="")
+    status = models.CharField(max_length=100, default="INCOMPLETE")
