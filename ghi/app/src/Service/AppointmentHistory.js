@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-function AppointmentForm(props) {
+function AppointmentHistory(props) {
     return (
         <p>Hello</p>
     )
 }
 
-export default AppointmentForm
+export default AppointmentHistory

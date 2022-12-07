@@ -26,11 +26,9 @@ SECRET_KEY = 'django-insecure-6v%&r($8@l1=qo&wl1v34x)x^@uxqxuf#bq9s_uh-q8lmc(zk+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-# Application definition
-
 INSTALLED_APPS = [
     'service_rest.apps.ServiceRestConfig',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
