@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 function SalesList() {
 
     const [salesData, setSalesData] = useState([]);
-    const [salesPersons, setSalesPersons] = useState(null);
-    const [filteredData, setFilteredData] = useState(null);
+    const [salesPersons, setSalesPersons] = useState([]);
 
 
     const getSalesPersons = async () => {
@@ -19,6 +18,7 @@ function SalesList() {
         const salesUrl = "http://localhost:8090/api/sales/";
         const response = await fetch(salesUrl);
         const data = await response.json();
+        setSalesData(data.sales);
         return data.sales;
     }
 
@@ -26,12 +26,13 @@ function SalesList() {
         const sales = await getSales();
         setSalesData(sales)
         const filteredList = sales.filter(sale => sale.sales_person.id == event.target.value);
-        setFilteredData(filteredList);
+        setSalesData(filteredList);
     }
 
 
     useEffect(() => {
         getSalesPersons();
+        getSales();
     }, []);
 
 
@@ -61,7 +62,7 @@ function SalesList() {
                     </tr>
                 </thead>
                 <tbody>
-                {filteredData?.map(sale => {
+                {salesData?.map(sale => {
                     return (
                     <tr key={sale.id}>
                         <td>{ sale.sales_person.name }</td>
