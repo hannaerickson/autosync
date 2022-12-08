@@ -17,20 +17,17 @@ function AppointmentList() {
         fetchData()
     }
 
-    const [aptStatus, setAptStatus] = useState('');
-
     const finishAppointment = async (id) => {
         const finishedUrl = `http://localhost:8080/api/appointments/${id}/`;
-        const status = setAptStatus({"status": "COMPLETE"})
+        const status = {"status": "COMPLETE"}
         const fetchConfig = {
             method: "put",
-            body: status,
+            body: JSON.stringify(status),
             headers: {
                 'Content-Type': 'application/json',
             },
         };
         const response = await fetch(finishedUrl, fetchConfig);
-        console.log("response", response)
     }
 
     useEffect(() => {
