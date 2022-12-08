@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 function SalesList() {
 
     const [salesData, setSalesData] = useState([]);
-    const [salesPersons, setSalesPersons] = useState([]);
+    const [salesPersons, setSalesPersons] = useState(null);
+    const [filteredData, setFilteredData] = useState(null);
 
 
     const getSalesPersons = async () => {
@@ -18,28 +19,27 @@ function SalesList() {
         const salesUrl = "http://localhost:8090/api/sales/";
         const response = await fetch(salesUrl);
         const data = await response.json();
-        setSalesData(data.sales)
+        return data.sales;
     }
 
-    const handleChange = (event) => {
-        getSales();
-        setSalesData(salesData.filter(sale => sale.sales_person.id === event.target.value));
+    const handleChange = async (event) => {
+        const sales = await getSales();
+        setSalesData(sales)
+        const filteredList = sales.filter(sale => sale.sales_person.id == event.target.value);
+        setFilteredData(filteredList);
     }
 
 
     useEffect(() => {
         getSalesPersons();
-        // getSales();
     }, []);
-
 
 
 
     return(
         <div>
-            <h1>Sales Person History</h1>
             <br/>
-            <h6>Select a sales person</h6>
+            <h1>Sales Person History</h1>
             <div className="mb-3">
                 <select onChange={handleChange} required id="sales_person" name="sales_person" className="form-select">
                   <option value="">Select a sales person</option>
@@ -61,7 +61,7 @@ function SalesList() {
                     </tr>
                 </thead>
                 <tbody>
-                {salesData?.map(sale => {
+                {filteredData?.map(sale => {
                     return (
                     <tr key={sale.id}>
                         <td>{ sale.sales_person.name }</td>

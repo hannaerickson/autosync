@@ -35,15 +35,23 @@ def list_customers(request):
             safe=False,
         )
 
-
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "DELETE"])
 def show_customer(request, id):
-    if request.method == "GET":
-        customer = Customer.objects.get(id=id)
+    try:
+        if request.method == "GET":
+            customer = Customer.objects.get(id=id)
+            return JsonResponse(
+                customer,
+                encoder=CustomerDetailEncoder,
+                safe=False,
+            )
+        else:
+            customer = Customer.objects.filter(id=id).delete()
+            return JsonResponse({"message": "customer deleted"})
+    except Customer.DoesNotExist:
         return JsonResponse(
-            customer,
-            encoder=CustomerDetailEncoder,
-            safe=False,
+            {"message": "customer does not exist"},
+            status=200,
         )
 
 
@@ -64,6 +72,26 @@ def list_sales_persons(request):
             sales_person,
             encoder=SalesPersonEncoder,
             safe=False
+        )
+
+
+@require_http_methods(["GET", "DELETE"])
+def show_sales_person(request, id):
+    try:
+        if request.method == "GET":
+                sales_person = SalesPerson.objects.get(id=id)
+                return JsonResponse(
+                    sales_person,
+                    encoder=SalesPersonEncoder,
+                    safe=False,
+                )
+        else:
+            sales_person = SalesPerson.objects.filter(id=id).delete()
+            return JsonResponse({"message": "sales person deleted"})
+    except SalesPerson.DoesNotExist:
+        return JsonResponse(
+            {"message": "sales person does not exist"},
+            status=200,
         )
 
 
