@@ -5,6 +5,15 @@ from .models import Sale, Customer, SalesPerson, AutomobileVO
 from .encoders import CustomerListEncoder, CustomerDetailEncoder, SalesPersonEncoder, AutomobileVOEncoder, SalesListEncoder
 
 
+@require_http_methods(["GET"])
+def list_automobile_vos(request):
+    if request.method == "GET":
+        automobiles = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"automobiles": automobiles},
+            encoder=AutomobileVOEncoder,
+        )
+
 
 @require_http_methods(["GET", "POST"])
 def list_customers(request):
@@ -13,7 +22,6 @@ def list_customers(request):
         return JsonResponse(
             {"customers": customers},
             encoder=CustomerListEncoder,
-            safe=False,
         )
     else:
         content = json.loads(request.body)

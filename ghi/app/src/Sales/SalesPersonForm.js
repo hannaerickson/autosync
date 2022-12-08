@@ -20,7 +20,7 @@ function SalesPersonForm() {
       const fetchConfig = {
         method: "POST",
         body: JSON.stringify({...salesPersonData}),
-        headers: {"Content-Type": "application.json"},
+        headers: {"Content-Type": "application/json"},
       }
       const response = await fetch(salesPersonUrl, fetchConfig);
       if (response.ok) {
