@@ -20,24 +20,36 @@ function SaleForm() {
     const getAutomobiles = async () => {
         const automobileUrl = "http://localhost:8100/api/automobiles/";
         const response = await fetch(automobileUrl);
-        const autoData = await response.json();
-        console.log(autoData);
-        setAutomobiles(autoData.autos);
+        if (response.ok) {
+            const autoData = await response.json();
+            console.log(autoData);
+            setAutomobiles(autoData.autos);
+        } else {
+            alert("Something went wrong!")
+        }
     }
 
 
     const getSalesPersons = async () => {
         const salesPersonsUrl = "http://localhost:8090/api/salespersons/";
         const response = await fetch(salesPersonsUrl);
-        const salesPersonsData = await response.json();
-        setSalesPersons(salesPersonsData.sales_persons);
+        if (response.ok) {
+            const salesPersonsData = await response.json();
+            setSalesPersons(salesPersonsData.sales_persons);
+        } else {
+            alert("Something went wrong!")
+        }
     }
 
     const getCustomers = async () => {
         const customersUrl = "http://localhost:8090/api/customers/";
         const response = await fetch(customersUrl);
-        const customersData = await response.json();
-        setCustomers(customersData.customers);
+        if (response.ok) {
+            const customersData = await response.json();
+            setCustomers(customersData.customers);
+        } else {
+            alert("Something went wrong!")
+        }
     }
 
     useEffect(() => {
@@ -51,7 +63,7 @@ function SaleForm() {
         setSaleData({...saleData, [event.target.name]: event.target.value});
     }
 
-    const handleSubmit = async (event, vin) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const salesUrl = "http://localhost:8090/api/sales/";
         const fetchConfig = {
