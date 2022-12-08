@@ -14,7 +14,6 @@ function AppointmentHistory() {
     }
 
     const [query, setQuery] = useState('')
-    // console.log(list.filter(appointment=>appointment.vin.includes("1")));
 
     useEffect(() => {
         fetchData()
