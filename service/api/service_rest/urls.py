@@ -9,5 +9,5 @@ from .views import (
 urlpatterns = [
     path("technicians/", api_technician, name="api_technician"),
     path("appointments/", api_appointments, name="api_appointments"),
-    path("appointments/<str:vin>/", api_change_appointment, name="api_change_appointment"),
+    path("appointments/<int:id>/", api_change_appointment, name="api_change_appointment"),
 ]

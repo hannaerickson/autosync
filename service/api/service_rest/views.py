@@ -34,6 +34,7 @@ class AppointmentEncoder(ModelEncoder):
         "vin",
         "owner",
         "date",
+        "time",
         "technician",
         "reason",
         "vip_status",
@@ -90,6 +91,7 @@ def api_appointments(request):
                 content["vip_status"] = ""
             owner = content["owner"]
             date = content["date"]
+            time = content["time"]
             reason = content["reason"]
             technician = content["technician"]
             tech = Technician.objects.get(employee_number=technician)
@@ -106,10 +108,10 @@ def api_appointments(request):
             return response
 
 @require_http_methods(["DELETE", "PUT"])
-def api_change_appointment(request, vin):
+def api_change_appointment(request, id):
     if request.method == "DELETE":
         try:
-            appointment = Appointment.objects.get(vin=vin)
+            appointment = Appointment.objects.get(id=id)
             appointment.delete()
             return JsonResponse({"message": "Appointment deleted"})
         except Appointment.DoesNotExist:
@@ -117,8 +119,8 @@ def api_change_appointment(request, vin):
     else:
         content = json.loads(request.body)
         status = content["status"]
-        Appointment.objects.filter(vin=vin).update(**content)
-        appointment = Appointment.objects.get(vin=vin)
+        Appointment.objects.filter(id=id).update(**content)
+        appointment = Appointment.objects.get(id=id)
         return JsonResponse(
             appointment,
             encoder=AppointmentEncoder,

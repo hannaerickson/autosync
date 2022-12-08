@@ -17,7 +17,8 @@ class Technician(models.Model):
 class Appointment(models.Model):
     vin = models.CharField(max_length=17, default="")
     owner = models.CharField(max_length=100)
-    date = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField()
     technician = models.ForeignKey(
         "Technician",
         related_name="appointments",
