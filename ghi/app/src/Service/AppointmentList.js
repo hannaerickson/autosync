@@ -8,8 +8,7 @@ function AppointmentList() {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
-            setList(data.appointments)
+            setList(data.appointments);
         }
     }
     const deleteAppointment = async (id) => {
@@ -18,10 +17,20 @@ function AppointmentList() {
         fetchData()
     }
 
+    const [aptStatus, setAptStatus] = useState('');
+
     const finishAppointment = async (id) => {
-        const finishedUrl = 'http://localhost:8080/api/appointments/';
-        const response = await fetch(finishedUrl, {method: 'GET'});
-        fetchData()
+        const finishedUrl = `http://localhost:8080/api/appointments/${id}/`;
+        const status = setAptStatus({"status": "COMPLETE"})
+        const fetchConfig = {
+            method: "put",
+            body: status,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const response = await fetch(finishedUrl, fetchConfig);
+        console.log("response", response)
     }
 
     useEffect(() => {
@@ -47,7 +56,8 @@ function AppointmentList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {list?.map(appointment => {
+                    {list?.filter((appointment) => appointment.status !== "COMPLETE")
+                    ?.map(appointment => {
                         return (
                             <tr key={appointment.id}>
                                 <td>{appointment.vin}</td>
@@ -57,8 +67,8 @@ function AppointmentList() {
                                 <td>{appointment.time}</td>
                                 <td>{appointment.technician.name}</td>
                                 <td>{appointment.reason}</td>
-                                <td><button className="btn btn-danger">Cancel</button></td>
-                                <td><button className="btn btn-success">Finished</button></td>
+                                <td><button onClick={() => deleteAppointment(appointment.id)} className="btn btn-danger">Cancel</button></td>
+                                <td><button onClick={() => finishAppointment(appointment.id)} name="status" value={appointment.status} className="btn btn-success">Finished</button></td>
                             </tr>
                         )
                     })}
