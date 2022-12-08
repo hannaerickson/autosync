@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 function CustomerForm() {
 
     const noData = {
@@ -26,10 +25,9 @@ function CustomerForm() {
         const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
             const newCustomer = await response.json();
-            console.log(newCustomer)
             setCustomerData(noData)
         } else {
-            console.log("error with post")
+            alert("Something went wrong!")
         }
     }
 
@@ -57,7 +55,6 @@ function CustomerForm() {
         </div>
         </div>
     )
-
 }
 
 export default CustomerForm;

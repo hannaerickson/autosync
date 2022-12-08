@@ -8,7 +8,6 @@ function SalesPersonForm() {
     }
 
     const [salesPersonData, setSalesPersonData] = useState(noData);
-    // const [newSalesPersonInfo, setNewSalesPersonInfo] = useState("");
 
     const handleChange = (event) => {
         setSalesPersonData({...salesPersonData, [event.target.name]: event.target.value});
@@ -25,7 +24,6 @@ function SalesPersonForm() {
         const response = await fetch(salesPersonUrl, fetchConfig);
         if (response.ok) {
             const newSalesPerson = await response.json();
-            // setNewSalesPersonInfo(newSalesPerson);
             setSalesPersonData(noData);
             alert(`Welcome to the team, ${newSalesPerson.name}!`);
         } else {
