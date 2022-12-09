@@ -3,7 +3,7 @@ import ModelForm from "./ModelForm";
 
 
 function ModelsList() {
-    const [list, setList] = useState(null);
+    const [list, setList] = useState([]);
 
     const fetchData = async () => {
         const url = 'http://localhost:8100/api/models/';
@@ -22,7 +22,7 @@ function ModelsList() {
         <div>
             <br/>
             <h1>All Models</h1>
-            <ModelForm></ModelForm>
+            <ModelForm list={list} setList={setList}></ModelForm>
             <br/>
             <table className="table table-striped">
                 <thead>

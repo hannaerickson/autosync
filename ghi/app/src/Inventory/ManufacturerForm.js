@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ManufacturerForm() {
+function ManufacturerForm({list, setList}) {
 
     const noData = {name: ""};
 
@@ -21,6 +21,7 @@ function ManufacturerForm() {
         const response = await fetch(manufacturerUrl, fetchConfig);
         if (response.ok) {
             const newManufacturer = await response.json();
+            setList([...list, newManufacturer]);
             setManufacturer(noData);
             alert(`added manufacturer: ${newManufacturer.name}`);
         } else {
@@ -32,7 +33,7 @@ function ManufacturerForm() {
     return(
 
         <form onSubmit={handleSubmit} id="manufacturer-form">
-            <input onChange={handleChange} value={manufacturer.name} placeholder="name" required type="text" name="name" id="name" className="mb-3 form-control" />
+            <input onChange={handleChange} value={manufacturer.name} placeholder="Name" required type="text" name="name" id="name" className="mb-3 form-control" />
             <button className="btn btn-primary">Add manufacturer</button>
         </form>
 

@@ -21,7 +21,7 @@ function ManufacturersList() {
         <div>
             <br/>
             <h1>All Manufacturers</h1>
-            <ManufacturerForm></ManufacturerForm>
+            <ManufacturerForm list={list} setList={setList}></ManufacturerForm>
             <br/>
             <table className="table table-striped">
                 <thead>

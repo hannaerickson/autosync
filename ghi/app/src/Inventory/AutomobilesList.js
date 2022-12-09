@@ -23,7 +23,7 @@ return (
     <div>
         <br/>
         <h1>All Automobiles</h1>
-        <AutomobileForm></AutomobileForm>
+        <AutomobileForm list={list} setList={setList}></AutomobileForm>
         <br/>
         <table className="table table-striped">
             <thead>

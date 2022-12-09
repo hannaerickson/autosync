@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function ModelForm() {
+function ModelForm({list, setList}) {
 
     const noData = {
         name: "",
@@ -10,6 +10,7 @@ function ModelForm() {
 
     const [modelData, setModelData] = useState(noData);
     const [manufacturers, setManufacturers] = useState([]);
+
 
     const getManufacturers = async () => {
         const manufacturerUrl = "http://localhost:8100/api/manufacturers/";
@@ -41,6 +42,7 @@ function ModelForm() {
         const response = await fetch(modelUrl, fetchConfig);
         if (response.ok) {
             const newModel = await response.json();
+            setList([...list, newModel]);
             setModelData(noData);
             alert(`created model: ${newModel.name}`)
         }
@@ -49,8 +51,8 @@ function ModelForm() {
 
     return(
             <form onSubmit={handleSubmit} id="sale-form">
-                <input onChange={handleChange} value={modelData.name} placeholder="name" required type="text" name="name" id="name" className="mb-1 form-control" />
-                <input onChange={handleChange} value={modelData.picture_url} placeholder="picture url" required type="text" name="picture_url" id="picture_url" className="mb-1 form-control" />
+                <input onChange={handleChange} value={modelData.name} placeholder="Name" required type="text" name="name" id="name" className="mb-1 form-control" />
+                <input onChange={handleChange} value={modelData.picture_url} placeholder="Image Address" required type="text" name="picture_url" id="picture_url" className="mb-1 form-control" />
             <div className="mb-3">
                 <select onChange={handleChange} value={modelData.manufacturer_id} required id="manufacturer_id" name="manufacturer_id" className="form-select">
                   <option value="">Select a manufacturer</option>
