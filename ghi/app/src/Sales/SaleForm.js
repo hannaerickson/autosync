@@ -14,7 +14,7 @@ function SaleForm() {
     const [automobiles, setAutomobiles] = useState([]);
     const [salesPersons, setSalesPersons] = useState([]);
     const [customers, setCustomers] = useState([]);
-    const [newSale, setNewSale] = useState(null)
+    const [newSale, setNewSale] = useState("")
 
 
     const getAutomobiles = async () => {
@@ -24,7 +24,7 @@ function SaleForm() {
             const autoData = await response.json();
             setAutomobiles(autoData.autos);
         } else {
-            alert("Something went wrong!")
+            alert("Something went wrong!");
         }
     }
 
@@ -77,7 +77,7 @@ function SaleForm() {
             setNewSale(newSaleInfo);
             alert(`Enjoy your new ride ${newSaleInfo.customer.name}!`)
         } else {
-            console.log("error creating sale");
+            alert("Something went wrong!");
         }
         const autoUrl = `http://localhost:8100/api/automobiles/${saleData.automobile}/`
         const autoResponse = await fetch(autoUrl, {method: "DELETE"})

@@ -49,14 +49,8 @@ function ModelForm() {
 
     return(
             <form onSubmit={handleSubmit} id="sale-form">
-            <div className="form-floating mb-3">
-                <input onChange={handleChange} value={modelData.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />
-                <label htmlFor="name">Name</label>
-            </div>
-            <div className="form-floating mb-3">
-                <input onChange={handleChange} value={modelData.picture_url} placeholder="picture_url" required type="text" name="picture_url" id="picture_url" className="form-control" />
-                <label htmlFor="name">Picture url</label>
-            </div>
+                <input onChange={handleChange} value={modelData.name} placeholder="name" required type="text" name="name" id="name" className="mb-1 form-control" />
+                <input onChange={handleChange} value={modelData.picture_url} placeholder="picture url" required type="text" name="picture_url" id="picture_url" className="mb-1 form-control" />
             <div className="mb-3">
                 <select onChange={handleChange} value={modelData.manufacturer_id} required id="manufacturer_id" name="manufacturer_id" className="form-select">
                   <option value="">Select a manufacturer</option>
@@ -69,7 +63,7 @@ function ModelForm() {
                   })}
                 </select>
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button className="btn btn-primary">Add model</button>
             </form>
 
     )
