@@ -28,6 +28,7 @@ function AppointmentList() {
             },
         };
         const response = await fetch(finishedUrl, fetchConfig);
+        fetchData()
     }
 
     useEffect(() => {
