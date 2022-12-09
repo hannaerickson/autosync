@@ -36,7 +36,7 @@ class AutomobileVOEncoder(ModelEncoder):
     ]
 
 
-class SalesListEncoder(ModelEncoder):
+class SaleEncoder(ModelEncoder):
     model = Sale
     properties = [
         "id",

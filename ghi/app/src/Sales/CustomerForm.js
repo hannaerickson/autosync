@@ -26,6 +26,7 @@ function CustomerForm() {
         if (response.ok) {
             const newCustomer = await response.json();
             setCustomerData(noData)
+            alert(`Welcome to the family, ${newCustomer.name}!`)
         } else {
             alert("Something went wrong!")
         }
