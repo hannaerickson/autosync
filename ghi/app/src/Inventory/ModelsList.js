@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import ModelForm from "./ModelForm";
+
 
 function ModelsList() {
     const [list, setList] = useState(null);
@@ -20,6 +22,8 @@ function ModelsList() {
         <div>
             <br/>
             <h1>All Models</h1>
+            <ModelForm></ModelForm>
+            <br/>
             <table className="table table-striped">
                 <thead>
                     <tr className="table-success">
@@ -32,7 +36,7 @@ function ModelsList() {
                         return (
                             <tr key={model.id}>
                                 <td>{model.name}</td>
-                                <td><img className="list-images" src={model.picture_url}/></td>
+                                <td><img className="list-images img-thumbnail" src={model.picture_url}/></td>
                             </tr>
                         )
                     })}

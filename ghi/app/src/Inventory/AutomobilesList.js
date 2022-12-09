@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import AutomobileForm from "./AutomobileForm";
+
 
 function AutomobilesList() {
-const [list, setList] = useState(null);
+const [list, setList] = useState([]);
 
 const fetchData = async () => {
     const url = 'http://localhost:8100/api/automobiles/';
@@ -21,6 +23,8 @@ return (
     <div>
         <br/>
         <h1>All Automobiles</h1>
+        <AutomobileForm></AutomobileForm>
+        <br/>
         <table className="table table-striped">
             <thead>
                 <tr className="table-success">
