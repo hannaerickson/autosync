@@ -25,7 +25,7 @@ function SalesPersonForm() {
         if (response.ok) {
             const newSalesPerson = await response.json();
             setSalesPersonData(noData);
-            alert(`Welcome to the team, ${newSalesPerson.name}!`);
+            alert(`Welcome to the Dorsey's team, ${newSalesPerson.name}!`);
         } else {
             alert("Something went wrong!")
         }
@@ -35,7 +35,7 @@ function SalesPersonForm() {
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-            <h1>Add a sales person</h1>
+            <h1>Join the Dorsey team</h1>
                 <form onSubmit={handleSubmit} id="employee-form">
                     <div className="form-floating mb-3">
                         <input onChange={handleChange} value={salesPersonData.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />

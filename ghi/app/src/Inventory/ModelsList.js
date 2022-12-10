@@ -21,7 +21,7 @@ function ModelsList() {
     return (
         <div>
             <br/>
-            <h1>All Models</h1>
+            <h1>Models</h1>
             <ModelForm list={list} setList={setList}></ModelForm>
             <br/>
             <table className="table table-striped">

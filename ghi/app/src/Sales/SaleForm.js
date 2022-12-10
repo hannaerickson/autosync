@@ -109,7 +109,7 @@ function SaleForm() {
             </div>
             <div className="mb-3">
                 <select onChange={handleChange} value={saleData.sales_person} required id="sales_person" name="sales_person" className="form-select">
-                  <option value="">Select a sales person</option>
+                  <option value="">Select a Dorsey team member</option>
                   {salesPersons?.map(salesPerson => {
                     return(
                         <option key={salesPerson.id} value={salesPerson.employee_number}>
@@ -121,7 +121,7 @@ function SaleForm() {
             </div>
             <div className="mb-3">
                 <select onChange={handleChange} value={saleData.customer} required id="customer" name="customer" className="form-select">
-                  <option value="">Select a customer</option>
+                  <option value="">Select a Dorsey family member</option>
                   {customers?.map(customer => {
                     return(
                         <option key={customer.id} value={customer.id}>

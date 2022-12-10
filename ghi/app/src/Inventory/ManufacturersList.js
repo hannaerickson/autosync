@@ -20,7 +20,7 @@ function ManufacturersList() {
     return (
         <div>
             <br/>
-            <h1>All Manufacturers</h1>
+            <h1>Manufacturers</h1>
             <ManufacturerForm list={list} setList={setList}></ManufacturerForm>
             <br/>
             <table className="table table-striped">

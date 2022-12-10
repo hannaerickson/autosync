@@ -40,10 +40,10 @@ function SalesList() {
     return(
         <div>
             <br/>
-            <h1>Sales Person History</h1>
+            <h1>Sales History</h1>
             <div className="mb-3">
                 <select onChange={handleChange} required id="sales_person" name="sales_person" className="form-select">
-                  <option value="">Select a sales person</option>
+                  <option value="">Select a Dorsey team member</option>
                   {salesPersons?.map(salesPerson => {
                     return(
                         <option key={salesPerson.id} value={salesPerson.id}>
@@ -55,10 +55,10 @@ function SalesList() {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Sales Person</th>
-                        <th>Customer</th>
+                        <th>DORSEY'S TEAM MEMBER</th>
+                        <th>CUSTOMER</th>
                         <th>VIN</th>
-                        <th>Sale Price</th>
+                        <th>SALE PRICE</th>
                     </tr>
                 </thead>
                 <tbody>

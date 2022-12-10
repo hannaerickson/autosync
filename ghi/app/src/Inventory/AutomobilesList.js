@@ -22,7 +22,7 @@ useEffect(() => {
 return (
     <div>
         <br/>
-        <h1>All Automobiles</h1>
+        <h1>Automobiles</h1>
         <AutomobileForm list={list} setList={setList}></AutomobileForm>
         <br/>
         <table className="table table-striped">
