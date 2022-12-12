@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function ManufacturerForm({list, setList}) {
-
     const noData = {name: ""};
 
     const [manufacturer, setManufacturer] = useState(noData);
@@ -29,16 +28,12 @@ function ManufacturerForm({list, setList}) {
         }
     }
 
-
     return(
-
         <form onSubmit={handleSubmit} id="manufacturer-form">
             <input onChange={handleChange} value={manufacturer.name} placeholder="Name" required type="text" name="name" id="name" className="mb-3 form-control" />
             <button className="btn btn-primary">Add manufacturer</button>
         </form>
-
     )
-
 }
 
 export default ManufacturerForm;

@@ -43,7 +43,6 @@ function AppointmentForm() {
             technician,
             reason,
         }
-        console.log(appointment); // delete me later!!!!!!!!!!!!!!!!!!
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
             method: "post",
@@ -55,8 +54,6 @@ function AppointmentForm() {
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
             const newAppointment = await response.json();
-            console.log(newAppointment); // delete me later!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
             setVinNumber('')
             setOwner('')
             setDate('')

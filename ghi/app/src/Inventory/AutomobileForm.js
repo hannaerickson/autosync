@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 function AutomobileForm({list, setList}) {
-
     const noData = {
         color: "",
         year: "",
@@ -10,8 +9,8 @@ function AutomobileForm({list, setList}) {
     }
 
     const [automobileData, setAutomobileData] = useState(noData);
-    const [models, setModels] = useState([]);
 
+    const [models, setModels] = useState([]);
 
     const getModels = async () => {
         const modelUrl = "http://localhost:8100/api/models/";
@@ -28,11 +27,9 @@ function AutomobileForm({list, setList}) {
         getModels();
     }, []);
 
-
     const handleChange = (event) => {
         setAutomobileData({...automobileData, [event.target.name]: event.target.value});
     }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();

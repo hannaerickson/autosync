@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import AutomobileForm from "./AutomobileForm";
 
-
 function AutomobilesList() {
 const [list, setList] = useState([]);
 

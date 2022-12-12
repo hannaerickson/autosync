@@ -35,6 +35,7 @@ def list_customers(request):
             safe=False,
         )
 
+
 @require_http_methods(["GET", "PUT", "DELETE"])
 def show_customer(request, id):
     if request.method == "GET":
@@ -78,7 +79,6 @@ def show_customer(request, id):
                 {"message": "Customer does not exist"},
                 status=404,
             )
-
 
 
 @require_http_methods(["GET", "POST"])
@@ -144,7 +144,6 @@ def show_sales_person(request, id):
             )
 
 
-
 @require_http_methods(["GET", "POST"])
 def list_sales(request):
     if request.method == "GET":
@@ -189,7 +188,6 @@ def list_sales(request):
             encoder=SaleEncoder,
             safe=False,
         )
-
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])

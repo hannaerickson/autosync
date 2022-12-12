@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 function ModelForm({list, setList}) {
-
     const noData = {
         name: "",
         picture_url: "",
@@ -9,8 +8,8 @@ function ModelForm({list, setList}) {
     }
 
     const [modelData, setModelData] = useState(noData);
-    const [manufacturers, setManufacturers] = useState([]);
 
+    const [manufacturers, setManufacturers] = useState([]);
 
     const getManufacturers = async () => {
         const manufacturerUrl = "http://localhost:8100/api/manufacturers/";
@@ -52,30 +51,29 @@ function ModelForm({list, setList}) {
     }
 
     return(
-            <form onSubmit={handleSubmit} id="sale-form">
-                <div className="row">
-                    <div className="col-sm">
-                        <input onChange={handleChange} value={modelData.name} placeholder="Name" required type="text" name="name" id="name" className="mb-1 form-control" />
-                    </div>
-                    <div className="col-sm-9">
-                        <input onChange={handleChange} value={modelData.picture_url} placeholder="Image Address" required type="text" name="picture_url" id="picture_url" className="mb-1 form-control" />
-                    </div>
+        <form onSubmit={handleSubmit} id="sale-form">
+            <div className="row">
+                <div className="col-sm">
+                    <input onChange={handleChange} value={modelData.name} placeholder="Name" required type="text" name="name" id="name" className="mb-1 form-control" />
                 </div>
-            <div className="mb-3">
-                <select onChange={handleChange} value={modelData.manufacturer_id} required id="manufacturer_id" name="manufacturer_id" className="form-select">
-                  <option value="">Select a manufacturer</option>
-                  {manufacturers?.map(manufacturer => {
-                    return(
-                        <option key={manufacturer.id} value={manufacturer.id}>
-                            {manufacturer.name}
-                        </option>
-                    )
-                  })}
-                </select>
+                <div className="col-sm-9">
+                    <input onChange={handleChange} value={modelData.picture_url} placeholder="Image Address" required type="text" name="picture_url" id="picture_url" className="mb-1 form-control" />
+                </div>
             </div>
-            <button className="btn btn-primary">Add model</button>
-            </form>
-
+        <div className="mb-3">
+            <select onChange={handleChange} value={modelData.manufacturer_id} required id="manufacturer_id" name="manufacturer_id" className="form-select">
+                <option value="">Select a manufacturer</option>
+                {manufacturers?.map(manufacturer => {
+                return(
+                    <option key={manufacturer.id} value={manufacturer.id}>
+                        {manufacturer.name}
+                    </option>
+                )
+                })}
+            </select>
+        </div>
+        <button className="btn btn-primary">Add model</button>
+        </form>
     )
 
 }

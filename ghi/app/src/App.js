@@ -13,9 +13,6 @@ import AutomobilesList from './Inventory/AutomobilesList';
 import ModelsList from './Inventory/ModelsList';
 import ManufacturersList from './Inventory/ManufacturersList';
 
-
-
-
 function App() {
   return (
     <BrowserRouter>
