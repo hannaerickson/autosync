@@ -47,8 +47,8 @@ function Nav() {
             People
           </a>
           <ul className="dropdown-menu">
-            <li><NavLink className="dropdown-item" to="/salesperson">Sales Representatives</NavLink></li>
-            <li><NavLink className="dropdown-item" to="/technicians">Technicians</NavLink></li>
+            <li><NavLink className="dropdown-item" to="/salesperson">Sales Staff</NavLink></li>
+            <li><NavLink className="dropdown-item" to="/technicians">Technician Staff</NavLink></li>
             <li><NavLink className="dropdown-item" to="/customers">Customers</NavLink></li>
           </ul>
         </li>

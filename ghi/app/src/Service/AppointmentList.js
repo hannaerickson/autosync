@@ -65,7 +65,7 @@ function AppointmentList() {
                                 <td>{appointment.time}</td>
                                 <td>{appointment.technician.name}</td>
                                 <td>{appointment.reason}</td>
-                                <td><button onClick={() => deleteAppointment(appointment.id)} className="btn btn-outline-danger">❌</button></td>
+                                <td><button onClick={() => deleteAppointment(appointment.id)} className="btn btn-danger">Cancel</button></td>
                                 <td><button onClick={() => finishAppointment(appointment.id)} name="status" value={appointment.status} className="btn btn-success">Finished</button></td>
                             </tr>
                         )
