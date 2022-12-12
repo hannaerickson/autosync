@@ -25,10 +25,10 @@ function CustomerForm() {
         const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
             const newCustomer = await response.json();
-            setCustomerData(noData)
-            alert(`Welcome to the Dorsey family, ${newCustomer.name}!`)
+            setCustomerData(noData);
+            alert(`Welcome to the Dorsey family, ${newCustomer.name}!`);
         } else {
-            alert("Something went wrong!")
+            alert("Something went wrong creating customer!");
         }
     }
 

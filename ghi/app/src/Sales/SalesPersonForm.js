@@ -27,7 +27,7 @@ function SalesPersonForm() {
             setSalesPersonData(noData);
             alert(`Welcome to the Dorsey's team, ${newSalesPerson.name}!`);
         } else {
-            alert("Something went wrong!")
+            alert("Something went wrong!");
         }
     }
 

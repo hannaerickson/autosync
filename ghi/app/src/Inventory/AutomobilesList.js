@@ -12,6 +12,8 @@ const fetchData = async () => {
         const data = await response.json();
         setList(data.autos)
         console.log("autos", data.autos)
+    } else {
+        alert("Something went wrong retrieving automobiles!")
     }
 }
 

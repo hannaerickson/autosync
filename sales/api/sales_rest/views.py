@@ -154,30 +154,42 @@ def list_sales(request):
             encoder=SaleEncoder,
         )
     else:
+        content = json.loads(request.body)
         try:
-            content = json.loads(request.body)
             sales_person = content["sales_person"]
             sp = SalesPerson.objects.get(employee_number=sales_person)
             content["sales_person"] = sp
+        except SalesPerson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Sales person does not exist"},
+                status=404,
+            )
+        try:
             customer_id = content["customer"]
             customer = Customer.objects.get(id=customer_id)
             content["customer"] = customer
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Customer does not exist"},
+                status=404,
+            )
+        try:
             vin = content["automobile"]
             auto = AutomobileVO.objects.get(vin=vin)
             content["automobile"] = auto
-            price = content["price"]
-            sale = Sale.objects.create(**content)
+        except AutomobileVO.DoesNotExist:
             return JsonResponse(
-                sale,
-                encoder=SaleEncoder,
-                safe=False,
-            )
-
-        except (SalesPerson.DoesNotExist, Customer.DoesNotExist, AutomobileVO.DoesNotExist):
-            return JsonResponse(
-                {"message": "invalid information"},
+                {"message": "Automobile does not exist"},
                 status=404,
             )
+        price = content["price"]
+        sale = Sale.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SaleEncoder,
+            safe=False,
+        )
+
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])

@@ -24,7 +24,7 @@ function SaleForm() {
             const autoData = await response.json();
             setAutomobiles(autoData.autos);
         } else {
-            alert("Something went wrong!");
+            alert("Something went wrong retrieving automobiles!");
         }
     }
 
@@ -36,7 +36,7 @@ function SaleForm() {
             const salesPersonsData = await response.json();
             setSalesPersons(salesPersonsData.sales_persons);
         } else {
-            alert("Something went wrong!")
+            alert("Something went wrong retrieving sales persons!")
         }
     }
 
@@ -47,7 +47,7 @@ function SaleForm() {
             const customersData = await response.json();
             setCustomers(customersData.customers);
         } else {
-            alert("Something went wrong!")
+            alert("Something went wrong retrieving customers!")
         }
     }
 
@@ -77,12 +77,12 @@ function SaleForm() {
             setNewSale(newSaleInfo);
             alert(`Enjoy your new ride ${newSaleInfo.customer.name}!`)
         } else {
-            alert("Something went wrong!");
+            alert("Something went wrong finalizing sale!");
         }
         const autoUrl = `http://localhost:8100/api/automobiles/${saleData.automobile}/`
         const autoResponse = await fetch(autoUrl, {method: "DELETE"})
         if (!autoResponse.ok) {
-            alert("Something went wrong!");
+            alert("Something went wrong removing automobile from inventory!");
         }
 
         getAutomobiles();

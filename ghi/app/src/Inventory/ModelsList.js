@@ -10,7 +10,9 @@ function ModelsList() {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            setList(data.models)
+            setList(data.models);
+        } else {
+            alert("Something went wrong retrieving models!");
         }
     }
 

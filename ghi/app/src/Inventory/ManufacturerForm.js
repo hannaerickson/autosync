@@ -25,7 +25,7 @@ function ManufacturerForm({list, setList}) {
             setManufacturer(noData);
             alert(`added manufacturer: ${newManufacturer.name}`);
         } else {
-            alert("Something went wrong!");
+            alert("Something went wrong creating manufacturer!");
         }
     }
 

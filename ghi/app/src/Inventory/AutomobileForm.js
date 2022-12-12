@@ -20,7 +20,7 @@ function AutomobileForm({list, setList}) {
             const data = await response.json();
             setModels(data.models);
         } else {
-            alert("Something went wrong");
+            alert("Something went wrong retrieving models!");
         }
     }
 
@@ -49,7 +49,7 @@ function AutomobileForm({list, setList}) {
             setAutomobileData(noData);
             alert(`Automobile: ${newAutomobile.vin} added to inventory`);
         } else {
-            alert("Something went wrong!")
+            alert("Something went wrong creating automobile!")
         }
     }
 

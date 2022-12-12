@@ -19,7 +19,7 @@ function ModelForm({list, setList}) {
             const manufacturerData = await response.json();
             setManufacturers(manufacturerData.manufacturers);
         } else {
-            alert("Something went wrong!");
+            alert("Something went wrong retrieving manufacturers!");
         }
     }
 
@@ -44,7 +44,9 @@ function ModelForm({list, setList}) {
             const newModel = await response.json();
             setList([...list, newModel]);
             setModelData(noData);
-            alert(`created model: ${newModel.name}`)
+            alert(`created model: ${newModel.name}`);
+        } else {
+            alert("Something went wrong creating model!");
         }
 
     }

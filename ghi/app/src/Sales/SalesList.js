@@ -10,16 +10,24 @@ function SalesList() {
     const getSalesPersons = async () => {
         const salesPersonsUrl = "http://localhost:8090/api/salespersons/";
         const response = await fetch(salesPersonsUrl);
-        const data = await response.json()
-        setSalesPersons(data.sales_persons);
+        if (response.ok) {
+            const data = await response.json();
+            setSalesPersons(data.sales_persons);
+        } else {
+            alert("Something went wrong retrieving sales persons!");
+        }
     }
 
     const getSales = async () => {
         const salesUrl = "http://localhost:8090/api/sales/";
         const response = await fetch(salesUrl);
-        const data = await response.json();
-        setSalesData(data.sales);
-        return data.sales;
+        if (response.ok) {
+            const data = await response.json();
+            setSalesData(data.sales);
+            return data.sales;
+        } else {
+            alert("Something went wrong retrieving sales records!");
+        }
     }
 
     const handleChange = async (event) => {
