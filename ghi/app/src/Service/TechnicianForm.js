@@ -35,7 +35,7 @@ function TechnicianForm() {
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-                <h1>Enter a Technician</h1>
+                <h1>Register a Technician</h1>
                 <form onSubmit={handleSubmit} id="create-technician">
                 <div className="form-floating mb-3">
                     <input onChange={handleNameChange} value={name} placeholder="Name" required type="text" name="name" id="name" className="form-control"/>

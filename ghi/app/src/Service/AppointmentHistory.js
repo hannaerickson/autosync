@@ -22,10 +22,9 @@ function AppointmentHistory() {
     return (
         <div>
             <br/>
-            <input type="text" placeholder="Search by VIN" className="search" onChange={(e)=>setQuery(e.target.value)} />
-            <br/>
-            <br/>
             <h1>Service History</h1>
+            <input type="search" placeholder="Search by VIN" className="form-control" onChange={(e)=>setQuery(e.target.value)} />
+            <br/>
             <table className="table table-striped">
                 <thead>
                     <tr className="table-success">

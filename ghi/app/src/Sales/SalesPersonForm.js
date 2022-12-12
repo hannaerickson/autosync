@@ -31,11 +31,11 @@ function SalesPersonForm() {
         }
     }
 
-    return(
+    return (
         <div className="row">
             <div className="offset-3 col-6">
             <div className="shadow p-4 mt-4">
-            <h1>Join the Dorsey team</h1>
+            <h1>Register a Sales Person</h1>
                 <form onSubmit={handleSubmit} id="employee-form">
                     <div className="form-floating mb-3">
                         <input onChange={handleChange} value={salesPersonData.name} placeholder="name" required type="text" name="name" id="name" className="form-control" />

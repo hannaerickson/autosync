@@ -20,6 +20,11 @@ function ModelsList() {
         fetchData()
     }, []);
 
+    const imageSize = {
+        height: 250,
+        width: 350,
+    };
+
     return (
         <div>
             <br/>
@@ -38,7 +43,7 @@ function ModelsList() {
                         return (
                             <tr key={model.id}>
                                 <td>{model.name}</td>
-                                <td><img className="list-images img-thumbnail" src={model.picture_url}/></td>
+                                <td><img style={imageSize} className="list-images img-thumbnail" src={model.picture_url}/></td>
                             </tr>
                         )
                     })}

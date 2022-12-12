@@ -36,7 +36,7 @@ function CustomerForm() {
         <div className="row">
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
-            <h1>Join the Dorsey family</h1>
+            <h1>Register a Customer</h1>
             <form onSubmit={handleSubmit} id="customer-form">
               <div className="form-floating mb-3">
                 <input onChange={handleChange} value={customerData.name} placeholder="Enter your full name" required type="text" name="name" id="name" className="form-control" />
