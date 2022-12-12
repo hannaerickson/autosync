@@ -60,6 +60,7 @@ function SalesList() {
                     )
                   })}
                 </select>
+                <button onClick={getSales} className="btn btn-primary">See all</button>
             <table className="table table-striped">
                 <thead>
                     <tr>
