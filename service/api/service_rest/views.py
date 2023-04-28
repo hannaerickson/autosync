@@ -76,8 +76,8 @@ def api_appointments(request):
             encoder=AppointmentEncoder,
         )
     else:
+        content = json.loads(request.body)
         try:
-            content = json.loads(request.body)
             vin = content["vin"]
             try:
                 auto = AutomobileVO.objects.get(vin=vin)
